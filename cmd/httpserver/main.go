@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	. "github.com/xtao/goserver"
+	. "goserver"
+	_ "net/http/pprof"
 )
 
 func main() {

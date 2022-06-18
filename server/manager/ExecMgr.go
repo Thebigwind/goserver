@@ -8,7 +8,7 @@ import (
 
 	//	"time"
 
-	. "github.com/xtao/goserver/common"
+	. "goserver/common"
 )
 
 type ExecMgr struct {

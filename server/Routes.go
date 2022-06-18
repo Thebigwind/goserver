@@ -11,8 +11,8 @@ import (
 	   可以从我们设定的路由表达式中提取出参数方便上层应用，而且完全兼容http.ServerMux
 	*/
 	"github.com/gorilla/mux"
-	. "github.com/xtao/goserver/common"
-	. "github.com/xtao/goserver/server/handler"
+	. "goserver/common"
+	. "goserver/server/handler"
 )
 
 type Route struct {
@@ -27,11 +27,12 @@ type Routes []Route
 func NewRouter() *mux.Router { //
 
 	router := mux.NewRouter().StrictSlash(true)
+	router.Use()
 	for _, route := range routes {
-		router.Methods(route.Method).
-			Path(route.Pattern).
-			Name(route.Name).
-			Handler(route.HandlerFunc)
+		router.Methods(route.Method). //get,post
+						Path(route.Pattern). //
+						Name(route.Name).
+						Handler(route.HandlerFunc)
 	}
 	router.PathPrefix("/").Handler(http.FileServer(http.Dir(STATIC_DIR)))
 

@@ -3,6 +3,8 @@ package handler
 import (
 	"errors"
 	"fmt"
+	. "goserver/common"
+	"goserver/server/manager"
 	"io"
 	"net/http"
 	"os"
@@ -12,8 +14,6 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
-	. "github.com/xtao/goWeb/common"
-	. "github.com/xtao/goWeb/server/manager"
 )
 
 func RootHandler(w http.ResponseWriter, r *http.Request) {
@@ -61,7 +61,7 @@ func RunCmdHandler(w http.ResponseWriter, req *http.Request) {
 		tm = 10
 	}
 	fmt.Println(PROG_PATH)
-	mgr := &ExecMgr{
+	mgr := &manager.ExecMgr{
 		Prog: "python", //PROG_PATH
 		//		Args: []string{strconv.Itoa(tm)},
 		Args: []string{"../whisper_export.py", strconv.Itoa(tm), startTime, endTime}, //"http://www.xtaotech.com/image/icon.png", "-o", "../Upload/icon.png"
@@ -136,7 +136,7 @@ func DownLoadFileHandler(w http.ResponseWriter, req *http.Request) {
 		tm = 10
 	}
 	//fmt.Println(PROG_PATH)
-	mgr := &ExecMgr{
+	mgr := &manager.ExecMgr{
 		Prog: "python", //PROG_PATH
 		//		Args: []string{strconv.Itoa(tm)},
 		Args: []string{"../whisper_export.py", strconv.Itoa(tm), startTime, endTime}, //"http://www.xtaotech.com/image/icon.png", "-o", "../Upload/icon.png"
